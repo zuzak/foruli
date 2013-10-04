@@ -1,0 +1,22 @@
+{
+  "name": "library",
+  "version": "0.0.1",
+  "description": "Booklist",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "Douglas Gardner <douglas@chippy.ch>",
+  "license": "apache2",
+  "dependencies": {
+    "jade": "~0.35.0",
+    "express": "~3.4.0",
+    "convict": "~0.4.0",
+    "winston": "~0.7.2",
+    "cluster": "~0.7.7",
+    "passport-local": "~0.1.6",
+    "passport": "~0.1.17",
+    "connect-ensure-login": "~0.1.1",
+    "mongoose": "~3.6.20"
+  }
+}

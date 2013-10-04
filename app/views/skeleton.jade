@@ -1,0 +1,14 @@
+!!!5
+html
+  head
+    meta(charset="utf-8")
+    title #{title}
+    block styles
+      link(href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css", rel="stylesheet")
+      link(href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/readable/bootstrap.min.css", rel="stylesheet")
+      link(href="global.css", rel="stylesheet", type="text/css")
+    block scripts
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+  body
+    div.container
+      block content
