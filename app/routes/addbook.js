@@ -8,7 +8,11 @@ module.exports = function (app) {
   app.get('/books/add',
     ensureLogin('/login'),
     function (req, res) {
-      res.render('addbook', {user: req.user, pretty: true})
+      res.render('addbook', {
+        user: req.user,
+        pretty: true,
+        title: 'Add book'
+      })
     }
   )
 
@@ -41,7 +45,8 @@ module.exports = function (app) {
                 type: 'danger'
               },
               pretty: true,
-              user: req.user
+              user: req.user,
+              title: 'Add book (error!)'
             })
             return
           }
@@ -56,7 +61,8 @@ module.exports = function (app) {
             type: 'warning'
           },
           pretty: true,
-          user: req.user
+          user: req.user,
+          title: 'Add book (error!)'
         })
         return
       }
@@ -66,7 +72,11 @@ module.exports = function (app) {
   app.get('/books/example',
     ensureLogin('/login'),
     function (req, res) {
-      res.render('examplebook', {user: req.user})
+      res.render('examplebook', {
+        user: req.user,
+        pretty: true,
+        title: 'Example'
+      })
     }
   )
 }

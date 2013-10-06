@@ -3,7 +3,10 @@ var passport = require('../auth')
 module.exports = function (app) {
 
   app.get('/login', function (req, res) {
-    res.render('login', {pretty: true})
+    res.render('login', {
+      pretty: true,
+      title: 'lectori salutem'
+    })
   })
 
   app.post('/login',

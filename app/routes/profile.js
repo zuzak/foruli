@@ -12,7 +12,8 @@ module.exports = function (app) {
         res.render('profile', {
           user: req.user,
           books: books,
-          pretty: true
+          pretty: true,
+          title: 'Your Profile'
         })
       })
     }
@@ -23,7 +24,8 @@ module.exports = function (app) {
     function (req, res) {
       res.render('editprofile', {
         user: req.user,
-        pretty: true
+        pretty: true,
+        title: 'Edit Profile'
       })
     }
   )
@@ -34,7 +36,11 @@ module.exports = function (app) {
       User.findOne({'username': req.user.username }, function (err, user) {
         user.email = req.body.email
         user.save(function (err, user) {
-          res.render('profile', {user: req.user, pretty: true})
+          res.render('profile', {
+            user: req.user,
+            pretty: true,
+            title: 'Your Profile'
+          })
         })
       })
     }
