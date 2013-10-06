@@ -33,6 +33,8 @@ require('./routes/home')(app)
 require('./routes/addbook')(app)
 require('./routes/profile')(app)
 require('./routes/version')(app)
+require('./routes/booklist')(app)
+require('./routes/notes')(app)
 require('./routes/viewbook')(app) // place below custom ./books/*
 
 // 404 default

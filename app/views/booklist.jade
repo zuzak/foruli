@@ -1,0 +1,10 @@
+extends navbar
+block content
+  for book in books
+    div.panel.panel-default
+      div.panel-heading
+        span ISBN #{book.isbn}
+        div.pull-right
+          a(href="books/" + book.isbn)
+            i.icon-book &nbsp;
+            span View Book
