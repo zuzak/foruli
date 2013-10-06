@@ -33,7 +33,8 @@ passport.use(new LocalStrategy(
         // user does not exist
         var newUser = new User({
           username: username,
-          password: password
+          password: password,
+          loginCount: 1
         })
 
         newUser.save(function (err, newUser) {
@@ -50,8 +51,9 @@ passport.use(new LocalStrategy(
       } else if (user.password == password) {
         // user is valid
         log.info('%s completed login successfully', username)
-        return done(null, user)
-
+          user.loginCount += 1
+          user.save()
+          return done(null, user)
       } else {
         // invalid password
         log.warn('Invalid password for %s received', username)

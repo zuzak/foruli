@@ -13,12 +13,18 @@ block content
           span Edit your profile
     div.panel-body
       p You are logged in as <b>#{user.username}</b>.
+      if user.loginCount != 1
+        p You have logged in <b>#{user.loginCount}</b> times.
+      else
+        p You have logged in <b>once</b>.
       if user.email
         p Your email address is <b>#{user.email}</b>
       else
         p
           span You have no email address set!&nbsp;
           a(href="profile/edit") Add one?
+      if books.length > 1
+        p You have <b>#{books.length}</b> books added.
   div.panel.panel-default
     div.panel-heading
       span Your Books
@@ -29,7 +35,9 @@ block content
       ul.books
         if books.length !== 0
           for book in books
-            li A book with ISBN #{book.isbn}
+            li
+              span A book with ISBN &nbsp;
+              a(href="/books/" + book.isbn) #{book.isbn}
         else
           li 
             span You have no books added! Would you like to &nbsp;

@@ -22,7 +22,7 @@ module.exports = function (app) {
     function (req, res) {
       var newBook = new UserBook({
         username : req.user.username,
-        isbn :  req.body.isbn
+        isbn :  isbn.asIsbn13(req.body.isbn)
       })
       if (req.body.isbn === undefined) {
         res.render('addbook', {
@@ -35,25 +35,40 @@ module.exports = function (app) {
         })
         return
       }
-      if (isbn.parse(newBook.isbn)) {
+      if (newBook.isbn) {
         // isbn is valid
-        newBook.save(function (err, newBook) {
-          if (err) {
-            log.error(err.stack)
+        UserBook.findOne({
+          username: newBook.username,
+          isbn: newBook.isbn
+        }, function (err, oldBook) {
+          if (oldBook) {
+            log.debug('Old book')
             res.render('addbook', {
               message: {
-                caption: err.message,
-                type: 'danger'
-              },
-              pretty: true,
-              user: req.user,
-              title: 'Add book (error!)'
+                caption: 'That ISBN is already associated with your account.',
+                type: 'warning'
+              }
             })
             return
+          } else {
+            newBook.save(function (err, newBook) {
+              if (err) {
+                log.error(err.stack)
+                res.render('addbook', {
+                  message: {
+                    caption: err.message,
+                    type: 'danger'
+                  },
+                  pretty: true,
+                  user: req.user,
+                  title: 'Add book (error!)'
+                })
+                return
+              }
+              log.info('%s added by %s', newBook.isbn, newBook.username)
+              res.redirect('/books/' + isbn.asIsbn13(newBook.isbn))
+            })
           }
-
-          // res.redirect('/books/' + isbn.hyphenate(newBook.isbn))
-          res.redirect('/profile')
         })
       } else {
         res.render('addbook', {
@@ -65,6 +80,7 @@ module.exports = function (app) {
           user: req.user,
           title: 'Add book (error!)'
         })
+        log.warn('%d tried to enter an invalid ISBN.', req.user.username)
         return
       }
     }
