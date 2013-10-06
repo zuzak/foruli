@@ -20,12 +20,18 @@ module.exports = function (app) {
       request.get(oL + req.params.isbn, function (e, r, b) {
         var data = JSON.parse(b)
         data = data['ISBN:' + req.params.isbn]
+        var title
+        try {
+          title = data.title
+        } catch (e) {
+          title = 'Book'
+        }
         res.render('book',{
           book: data,
           user: req.user,
           pretty: true,
           active: 'books',
-          title: data.title
+          title: title
         })
       })
     }

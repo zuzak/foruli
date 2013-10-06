@@ -8,7 +8,10 @@ block append styles
    input,button {
      margin:5px;
    }
-
+   .version {
+     padding:40px;
+     font-size:80%;
+   }
 block content
   h1(title="greetings, reader")
     span.latin lectori salutem
@@ -17,3 +20,5 @@ block content
     input.username.form-control(type="text",name="username",placeholder="enter your username",autofocus)
     input.password.form-control(name="password",type="password",placeholder="enter your password")
     button.btn.btn-lg.btn-primary.btn-block(type="submit") Create account or sign in
+  div.version
+    a(href="version").version foruli 
