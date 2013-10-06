@@ -22,7 +22,7 @@ module.exports = function (app) {
     function (req, res) {
       var newBook = new UserBook({
         username : req.user.username,
-        isbn :  req.body.isbn
+        isbn :  isbn.asIsbn13(req.body.isbn)
       })
       if (req.body.isbn === undefined) {
         res.render('addbook', {
@@ -52,8 +52,7 @@ module.exports = function (app) {
             return
           }
 
-          // res.redirect('/books/' + isbn.hyphenate(newBook.isbn))
-          res.redirect('/profile')
+          res.redirect('/books/' + isbn.asIsbn13(newBook.isbn))
         })
       } else {
         res.render('addbook', {
