@@ -1,3 +1,11 @@
+/*
+ * db.js
+ *
+ * Initalises the MongoDB database and connection.
+ *
+ * Schemas go in ./schemas, not here.
+ *
+ */
 var mongoose = require('mongoose')
 var log = require('./logger')
 var config = require('./config')

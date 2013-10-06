@@ -1,3 +1,17 @@
+/*
+ * auth.js
+ *
+ * Contains the code required to:
+ * - log in a user
+ * - log out a user
+ * - register a new user
+ * - (de)serialise a user
+ *
+ * Note that logging a user in should be as simple as possible: the login and
+ * registration forms are the same: if a user doesn't exist, just create a new
+ * one and let them in.
+ *
+ */
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy
 var log = require('./logger')

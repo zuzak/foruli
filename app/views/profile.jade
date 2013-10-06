@@ -27,5 +27,10 @@ block content
         span Add a book
     div.panel-body
       ul.books
-        for book in books
-          li A book with ISBN #{book.isbn}
+        if books.length !== 0
+          for book in books
+            li A book with ISBN #{book.isbn}
+        else
+          li 
+            span You have no books added! Would you like to &nbsp;
+            a(href="/books/add") add one?

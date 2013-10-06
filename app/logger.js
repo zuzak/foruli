@@ -1,3 +1,12 @@
+/*
+ * logger.js
+ *
+ * Creates a custom winston instance for the application.
+ *
+ * Use it by requiring logger.js in the file, and then using log.info('foo').
+ * 
+ */
+
 var winston = require('winston')
 
 var log = new (winston.Logger)({

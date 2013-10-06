@@ -1,3 +1,11 @@
+/*
+ * index.js
+ *
+ * This is the main file for the application. Try to move as much as you can to
+ * a different file, and require() it in.
+ *
+ */
+
 var express = require('express')
 var app = module.exports = express()
 var config = require('./config')
