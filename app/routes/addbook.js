@@ -11,7 +11,8 @@ module.exports = function (app) {
       res.render('addbook', {
         user: req.user,
         pretty: true,
-        title: 'Add book'
+        title: 'Add book',
+        active: 'books'
       })
     }
   )

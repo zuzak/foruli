@@ -5,14 +5,26 @@ block navbar
     div.navbar-header
       a.navbar-brand(href="/") foruli
     ul.nav.navbar-nav
-      li
-        a(href="/books")
-          i.icon-book &nbsp;
-          span Books
-      li
-        a(href="/notes")
-          i.icon-list-alt &nbsp;
-          span Notes
+      if active == 'books'
+        li.active
+          a(href="/books")
+            i.icon-book &nbsp;
+            span Books
+      else
+        li
+          a(href="/books")
+            i.icon-book &nbsp;
+            span Books
+      if active == 'notes'
+        li.active
+          a(href="/notes")
+            i.icon-list-alt &nbsp;
+            span Notes
+      else
+        li
+          a(href="/notes")
+            i.icon-list-alt &nbsp;
+            span Notes
     ul.nav.navbar-nav.navbar-right
       li.dropdown
         a.dropdown-toggle(href="#",data-toggle="dropdown") #{user.username}
