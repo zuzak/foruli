@@ -35,7 +35,7 @@ module.exports = function (app) {
         })
         return
       }
-      if (isbn.parse(newBook.isbn)) {
+      if (newBook.isbn) {
         // isbn is valid
         UserBook.findOne({
           username: newBook.username,
@@ -80,7 +80,7 @@ module.exports = function (app) {
           user: req.user,
           title: 'Add book (error!)'
         })
-        log.warn('%d tried to enter an invalid ISBN.', res.user.username)
+        log.warn('%d tried to enter an invalid ISBN.', req.user.username)
         return
       }
     }
