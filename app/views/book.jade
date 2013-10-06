@@ -39,6 +39,17 @@ block content
         ul.list-group.classifications
           for classification in book.classifications
             li.list-group-item #{classification[0]}
+      if associated
+        div.panel.panel-success
+          div.panel-heading
+            i.icon-check &nbsp;
+            span  Added to book list
+      else
+        div.panel.panel-info
+          div.panel-heading
+            a(href="/books/add/" + isbn)
+              i.icon-check-empty &nbsp;
+              span Add to book list
     div.col-md-9
       div.panel.panel-default
         div.panel-heading Book Information
