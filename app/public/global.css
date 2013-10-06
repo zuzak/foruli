@@ -13,3 +13,12 @@
   white-space: pre;
   font-size:80%;
 }
+
+.version {
+  padding:20px;
+  margin-top:20px;
+  font-size:60%;
+  color:gray;
+  text-align:center;
+  font-style:italic
+}

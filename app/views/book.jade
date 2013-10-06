@@ -1,0 +1,79 @@
+extends navbar
+block append styles
+  style.
+    .title {
+      font-size: 140%;
+      font-style: italic;
+    }
+    .author {
+      font-size: 120%;
+    }
+    .chapter-label {
+      font-weight:bold;
+    }
+    .attribs {
+      font-size: 80%;
+    }
+    .classifications {
+      font-family:monospace;
+    }
+    .cover {
+      height: 262px;
+      width: 180px;
+      margin:auto;
+    }
+    .classifications {
+      margin-top:20px;
+    }
+block content
+
+  if book
+    if book.title
+      h1 #{book.title}
+    if book.excerpts
+      blockquote #{book.excerpts[0].text}
+    div.col-md-3
+      if book.cover
+        img(src=book.cover.medium).cover
+      if book.classifications
+        ul.list-group.classifications
+          for classification in book.classifications
+            li.list-group-item #{classification[0]}
+    div.col-md-9
+      div.panel.panel-default
+        div.panel-heading Book Information
+        div.panel-body
+          if book.title
+            div.title #{book.title}
+          if book.by_statement
+            div.author #{book.by_statement}
+          else
+            for author in book.authors
+              div.author #{author.name}
+          div.date 
+            span Published #{book.publish_date}
+            if book.publish_places
+              for place in book.publish_places
+                span &nbsp; in #{place.name}
+          div.attribs
+            if book.number_of_pages
+              span #{book.number_of_pages} pages &nbsp;
+            if book.weight
+              span (#{book.weight})
+      if book.notes
+        div.panel.panel-default.panel-body #{book.notes}
+      if book.table_of_contents
+        div.panel.panel-default
+          div.panel-heading Table of Contents
+          div.panel-body
+            ul.list-group
+              - var toplevel = book.table_of_contents[0].level
+              for chapter in book.table_of_contents
+                if chapter.level == toplevel
+                  li.list-group-item 
+                    span.chapter-label #{chapter.label} &nbsp;
+                    span.chapter-name #{chapter.title}
+  else
+    div.panel.panel-warning
+      div.panel-heading Missing information
+      div.panel-body We couldn't find any information on the book you asked for. Sorry.

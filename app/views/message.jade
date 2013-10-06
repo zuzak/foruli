@@ -1,4 +1,9 @@
 extends skeleton
+block append styles
+  style.
+    .panel {
+      margin-top:20%;
+    }
 block content
   - var ty = 'panel-' + type
   div.panel(class=ty)
