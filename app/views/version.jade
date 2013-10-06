@@ -1,0 +1,39 @@
+extends skeleton
+block append styles
+  style.
+    .headword {
+       font-weight: bold;
+    }
+    .category {
+      font-style: italic;
+    }
+    .subject {
+      font-variant: small-caps;
+    }
+block content
+  h1 foruli
+  div.panel.panel-default
+    div.panel-heading
+      span.headword foruli &nbsp;
+      span.category (n.) &nbsp;
+      span.subject (Latin.) &nbsp;
+      span.definition Bookshelf.
+    div.panel-body
+      span You are running version &nbsp;
+      - var cURL = "https://github.com/zuzak/commit/" + commit
+      a(href=cURL) #{commit}
+      span of foruli.
+  div.panel.panel-default
+    div.panel-heading
+      span Contributors
+    div.panel-body
+      ul
+        for contrib in contribs
+          li
+            span #{contrib.slice(1)} &nbsp;
+            span.label.label-default #{contrib[0]} commits
+  if license
+    div.panel.panel-default
+      div.panel-heading
+        span License
+      div.panel-body #{license}

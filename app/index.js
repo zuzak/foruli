@@ -32,6 +32,7 @@ require('./routes/login')(app)
 require('./routes/home')(app)
 require('./routes/addbook')(app)
 require('./routes/profile')(app)
+require('./routes/version')(app)
 
 // 404 default
 require('./routes/error')(app)
