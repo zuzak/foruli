@@ -1,10 +1,15 @@
 extends navbar
 block content
+  div.panel.panel-primary
+    div.panel-body
+      span You can &nbsp;
+      a(href="/books/new") add as many books
+      span &nbsp; as you like to this list.
   for book in books
     div.panel.panel-default
       div.panel-heading
-        span ISBN #{book.isbn}
+        span ISBN #{book.formatted}
         div.pull-right
-          a(href="books/" + book.isbn)
+          a(href="books/" + book.raw)
             i.icon-book &nbsp;
             span View Book

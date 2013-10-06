@@ -18,7 +18,17 @@ module.exports = function (app) {
     ensureLogin('/login'),
     function (req, res) {
       request.get(oL + req.params.isbn, function (e, r, b) {
-        var data = JSON.parse(b)
+        var data
+        try {
+            data = JSON.parse(b)
+        } catch (e) {
+          res.render('message',{
+            header: 'Unable to parse upstream API',
+            body: e.stack,
+            type: 'danger'
+          })
+          return
+        }
         data = data['ISBN:' + req.params.isbn]
         var title
         try {
