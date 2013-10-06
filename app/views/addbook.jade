@@ -1,0 +1,15 @@
+extends navbar
+block content
+  h1 Register a new book
+  if message
+    - var mtype = 'alert-' + message.type
+    div.alert(class=mtype) #{message.caption}
+  p To add a new book, enter or scan the ISBN below.
+  form.addbook(method="post",action="/books/add")
+    div.input-group
+      span.input-group-addon
+        i.icon-barcode &nbsp; ISBN
+      input(autofocus,name="isbn",type="text",placeholder="978-0205309023").form-control.isbn
+      span.input-group-btn
+        button.btn.btn-default(type="submit")
+          i.icon-search &nbsp; Search

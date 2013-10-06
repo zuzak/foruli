@@ -5,10 +5,14 @@ html
     title #{title}
     block styles
       link(href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css", rel="stylesheet")
-      link(href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/readable/bootstrap.min.css", rel="stylesheet")
-      link(href="global.css", rel="stylesheet", type="text/css")
+      link(href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/slate/bootstrap.min.css",rel="stylesheet")
+      link(href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css",rel="stylesheet")
+      link(href="/global.css", rel="stylesheet", type="text/css")
     block scripts
+      script(src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
+      script(src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
   body
+    block navbar
     div.container
       block content

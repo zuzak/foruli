@@ -1,0 +1,31 @@
+extends navbar
+block content
+  h1 Your Profile
+  if message
+    - var mtype = 'alert-' + message.type
+    div.alert(class=mtype) #{message.caption}
+  div.panel.panel-default
+    div.panel-heading
+      span Your Details
+      div.pull-right
+        a(href="profile/edit")
+          i.icon-edit &nbsp;
+          span Edit your profile
+    div.panel-body
+      p You are logged in as <b>#{user.username}</b>.
+      if user.email
+        p Your email address is <b>#{user.email}</b>
+      else
+        p
+          span You have no email address set!&nbsp;
+          a(href="profile/edit") Add one?
+  div.panel.panel-default
+    div.panel-heading
+      span Your Books
+      a(href="/books/add").pull-right
+        i.icon-plus &nbsp;
+        span Add a book
+    div.panel-body
+      ul.books
+        for book in books
+          li A book with ISBN #{book.isbn}

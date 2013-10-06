@@ -17,6 +17,7 @@
     "passport-local": "~0.1.6",
     "passport": "~0.1.17",
     "connect-ensure-login": "~0.1.1",
-    "mongoose": "~3.6.20"
+    "mongoose": "~3.6.20",
+    "isbn": "~0.1.0"
   }
 }

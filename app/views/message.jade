@@ -1,12 +1,6 @@
 extends skeleton
-block append styles
-  style.
-    .panel {
-      margin:20% auto;
-      max-width:400px
-    }
 block content
   - var ty = 'panel-' + type
   div.panel(class=ty)
     div.panel-heading #{header}
-    div.panel-body #{msg}
+    div.panel-body.pre #{msg}

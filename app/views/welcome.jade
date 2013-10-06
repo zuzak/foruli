@@ -1,0 +1,10 @@
+extends navbar
+block content
+  h1 Hello, #{user.username}.
+  p You don't appear to have any books yet. (this may be a lie)
+  p Would you like to <a href="books/add">add one</a>?
+  if !user.email
+    p
+      span Alternatively, you could &nbsp;
+      a(href="profile/edit") complete your profile
+      span ...

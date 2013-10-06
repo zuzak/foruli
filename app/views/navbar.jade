@@ -1,0 +1,32 @@
+extends skeleton
+
+block navbar
+  div.navbar.navbar-inverse(role="navigation")
+    div.navbar-header
+      a.navbar-brand(href="/") xyzzy
+    ul.nav.navbar-nav
+      li
+        a(href="/books")
+          i.icon-book &nbsp;
+          span Books
+      li
+        a(href="/notes")
+          i.icon-list-alt &nbsp;
+          span Notes
+    ul.nav.navbar-nav.navbar-right
+      li.dropdown
+        a.dropdown-toggle(href="#",data-toggle="dropdown") #{user.username}
+          b.caret
+        ul.dropdown-menu
+          li
+            a(href="/profile")
+              i.icon-user &nbsp;
+              span Edit profile
+          li
+            a(href="/logout")
+              i.icon-signout &nbsp;
+              span Log out
+block content
+  div.starter-template
+    h1 Hello
+    p.lead foo

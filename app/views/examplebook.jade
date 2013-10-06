@@ -1,0 +1,33 @@
+extends navbar
+block content
+
+  h1 The Great Escape
+  div.panel.panel-default
+    div.panel-heading Book Information
+    div.panel-body
+      div.title The Great Escape
+      div.author Paul Brickhill
+      div.date 1951
+   div.panel.panel-default
+     div.panel-heading Classifications
+     div.panel-body
+      ol.breadcrumb
+        li
+          a(href="/books/loc/D") World History
+        li
+          a Modern History
+        li
+          a World War II
+        li
+          a Prisoner of War Camps
+        
+      ul.list-group
+        li.loc.list-group-item
+          b Library of Congress: &nbsp;
+          span D805.G3 
+          small B713 1951
+        li.dewey.list-group-item
+          b Dewey Decimal Classification: &nbsp;
+          span 940.547
+
+

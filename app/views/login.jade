@@ -1,10 +1,18 @@
 extends skeleton
+include mixins/messages
+block append styles
+ style.
+   .container {
+     max-width: 400px;
+     text-align:center
+   }
+   input,button {
+     margin:5px;
+   }
+
 block content
-  h1.latin(title="greetings, reader") lectori salutem
-  if message
-    - var ty = 'alert-' + message.type
-    div.alert(class=ty).
-      #{message.caption}
+  h1(title="greetings, reader")
+    span.latin lectori salutem
   form.form-signin(action="login",method="post")
     h2.form-signin-heading Please sign in.
     input.username.form-control(type="text",name="username",placeholder="enter your username",autofocus)
