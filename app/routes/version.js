@@ -6,7 +6,6 @@ module.exports = function (app) {
   app.get('/version', function (req, res) {
     exec('git rev-parse --short HEAD', function (err, stdout, stderr) {
       var commit = stdout
-      console.log("foo")
       exec('git shortlog -s < /dev/tty', function(err, stdout, stderr) {
         var contribs = []
         stdout = stdout.split('\n')

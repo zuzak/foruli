@@ -1,5 +1,3 @@
-var log = require('../logger')
-var passport = require('passport')
 var ensureLogin = require('connect-ensure-login').ensureLoggedIn
 
 module.exports = function (app) {

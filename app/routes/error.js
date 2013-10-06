@@ -13,6 +13,7 @@ module.exports = function (app) {
   })
 
   app.use(function (err, req, res, next) {
+    log.error(err.stack)
     res.render('message', {
       type: 'danger',
       header: '500: Something went wrong',
