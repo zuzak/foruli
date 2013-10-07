@@ -1,19 +1,31 @@
 extends navbar
+block append styles
+  style.
+    button, .input-group {
+      margin:5px
+    }
 block content
   h1 Your Profile
   if message
     - var mtype = 'alert-' + message.type
     div.alert(class=mtype) #{message.caption}
-  form.panel.panel-default(method="post",action="/profile/edit")
-    div.panel-heading
-      span Your Details
-      div.pull-right
-        i.icon-edit &nbsp;
-        span Editing your profile
-    div.panel-body
-      div.input-group
-        span.input-group-addon Your email address is:
-        input(autofocus,value=user.email,type="email",name="email",placeholder="foo.bar@example.com").form-control
-    button.btn.btn-default.pull-right(style="margin:5px")
+  form(method="post", action="/profile/edit")
+    div.panel.panel-default
+      div.panel-heading
+        span Your Details
+        div.pull-right
+          i.icon-edit &nbsp;
+          span Editing your profile
+      div.panel-body
+        div.input-group
+          span.input-group-addon Your email address is:
+          input(autofocus,value=user.email,type="email",name="email",placeholder="foo.bar@example.com").form-control
+        div.input-group
+          span.input-group-addon
+            input(type="checkbox", name="viewUpstream", value=user.showUpstream)
+          span.form-control
+            span Show external edit links? 
+            small (Changes will take place on next login)
+      button(type="submit").btn.btn-default.pull-right
         i.icon-save &nbsp;
-        span Save your profile
+        span Save your changes

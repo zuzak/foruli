@@ -23,10 +23,16 @@ block content
           i.icon-github &nbsp;
           span View source
     div.panel-body
-      span You are running version &nbsp;
-      - var cURL = "https://github.com/zuzak/foruli/commit/" + commit
-      a(href=cURL) #{commit}
-      span of foruli.
+      ul
+        li
+          span You are running version &nbsp;
+          - var cURL = "https://github.com/zuzak/foruli/commit/" + commit
+          a(href=cURL) #{commit}
+          span of foruli.
+        li
+          span Book information courtesy of
+          a(href="http://openlibrary.org")
+            span The Internet Archive.
   div.panel.panel-default
     div.panel-heading
       span Contributors

@@ -1,6 +1,7 @@
 var ensureLogin = require('connect-ensure-login').ensureLoggedIn
 var oL = 'http://openlibrary.org/api/books?format=json&jscmd=data&bibkeys=ISBN:'
 var request = require('request')
+var UserBook = require('../schemas/userbook')
 
 module.exports = function (app) {
 
@@ -36,12 +37,19 @@ module.exports = function (app) {
         } catch (e) {
           title = 'Book'
         }
-        res.render('book',{
-          book: data,
-          user: req.user,
-          pretty: true,
-          active: 'books',
-          title: title
+        UserBook.findOne({
+          username: req.user.username,
+          isbn: req.params.isbn
+        }, function (err, associated) {
+          res.render('book',{
+            book: data,
+            user: req.user,
+            pretty: true,
+            active: 'books',
+            title: title,
+            isbn: req.params.isbn,
+            associated: associated
+          })
         })
       })
     }
