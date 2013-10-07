@@ -35,12 +35,9 @@ module.exports = function (app) {
     function (req, res) {
       User.findOne({'username': req.user.username }, function (err, user) {
         user.email = req.body.email
+        user.showUpstream = req.body.viewUpstream
         user.save(function (err, user) {
-          res.render('profile', {
-            user: req.user,
-            pretty: true,
-            title: 'Your Profile'
-          })
+          res.redirect('/profile')
         })
       })
     }

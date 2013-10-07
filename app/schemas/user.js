@@ -4,7 +4,8 @@ var userSchema = new mongoose.Schema({
   username: String,
   password: String,
   email: String,
-  loginCount: Number
+  loginCount: Number,
+  showUpstream: Boolean
 })
 
 var user = mongoose.model('User', userSchema)

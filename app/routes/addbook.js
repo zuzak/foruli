@@ -12,10 +12,24 @@ module.exports = function (app) {
         user: req.user,
         pretty: true,
         title: 'Add book',
-        active: 'books'
+        active: 'books',
+        autofill: ''
       })
     }
   )
+
+    app.get('/books/add/:isbn',
+      ensureLogin('/login'),
+      function (req, res) {
+        res.render('addbook', {
+          user: req.user,
+          pretty: true,
+          title: 'Add book',
+          active: 'books',
+          autofill: isbn.hyphenate(req.params.isbn)
+        })
+      }
+    )
 
   app.post('/books/add',
     ensureLogin('/login'),
