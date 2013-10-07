@@ -50,7 +50,14 @@ block content
               span Add to book list
     div.col-md-9
       div.panel.panel-default
-        div.panel-heading Book Information
+        div.panel-heading
+          span Book Information
+          span #{JSON.stringify(userm)}
+          if user.showUpstream
+            div.pull-right
+              a(href=book.url + "/edit")
+                i.icon-globe &nbsp;
+                span Edit at the Internet Archive
         div.panel-body
           if book.title
             div.title #{book.title}
@@ -59,7 +66,7 @@ block content
           else
             for author in book.authors
               div.author #{author.name}
-          div.date 
+          div.date
             span Published #{book.publish_date}
             if book.publish_places
               for place in book.publish_places
@@ -71,6 +78,37 @@ block content
               span (#{book.weight})
       if book.notes
         div.panel.panel-default.panel-body #{book.notes}
+      div.panel.panel-default
+        div.panel-heading Harvard Citation
+        div.panel-body
+          if book.authors[0]
+            if book.authors[0].name.split(' ').length !== 1
+              span &nbsp; #{book.authors[0].name.split(' ').slice(1).join(' ')},
+              span &nbsp; #{book.authors[0].name.split(' ').shift()[0]}.
+            else
+              span &nbsp; #{book.authors[0].name}
+          if book.authors[1]
+            span &nbsp; and
+            if book.authors[1].name.split(' ').length != 1
+              span &nbsp; #{book.authors[1].name.split(' ').slice(1).join(' ')},
+              span &nbsp; #{book.authors[1].name.split(' ').shift()[0]}.
+            else
+              span &nbsp; #{book.authors[1].name}
+          if book.authors[2]
+            span &nbsp; et al.
+          if book.publish_date
+            span ,&nbsp; #{book.publish_date.slice(-4)}.
+          else
+            span ,&nbsp; (n. d.).
+          if book.title
+            span
+              i &nbsp; #{book.title}.
+          if book.publishers
+            span &nbsp; #{book.publishers[0].name}
+          if book.publish_places
+            span :&nbsp; #{book.publish_places[0].name}
+          else
+            span &#46;
       if book.table_of_contents
         div.panel.panel-default
           div.panel-heading Table of Contents
@@ -79,10 +117,14 @@ block content
               - var toplevel = book.table_of_contents[0].level
               for chapter in book.table_of_contents
                 if chapter.level == toplevel
-                  li.list-group-item 
+                  li.list-group-item
                     span.chapter-label #{chapter.label} &nbsp;
                     span.chapter-name #{chapter.title}
   else
     div.panel.panel-warning
       div.panel-heading Missing information
-      div.panel-body We couldn't find any information on the book you asked for. Sorry.
+      div.panel-body
+        div We couldn't find any information on the book you asked for.
+        if user.showUpstream
+          div
+            a(href="http://openlibrary.org/books/add") Add upstream?
