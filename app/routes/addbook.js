@@ -5,6 +5,13 @@ var UserBook = require('../schemas/userbook')
 
 module.exports = function (app) {
 
+  app.get('/books/new',
+    ensureLogin('/login'),
+    function(req, res) {
+      res.redirect('/books/add')
+    }
+  )
+
   app.get('/books/add',
     ensureLogin('/login'),
     function (req, res) {

@@ -63,8 +63,9 @@ block content
           if book.by_statement
             div.author #{book.by_statement}
           else
-            for author in book.authors
-              div.author #{author.name}
+            if book.authors
+              for author in book.authors
+                div.author #{author.name}
           div.date
             span Published #{book.publish_date}
             if book.publish_places
@@ -80,23 +81,25 @@ block content
       div.panel.panel-default
         div.panel-heading Harvard Citation
         div.panel-body
-          if book.authors[0]
-            if book.authors[0].name.split(' ').length !== 1
-              span &nbsp; #{book.authors[0].name.split(' ').slice(1).join(' ')},
-              span &nbsp; #{book.authors[0].name.split(' ').shift()[0]}.
-            else
-              span &nbsp; #{book.authors[0].name}
-          if book.authors[1]
-            span &nbsp; and
-            if book.authors[1].name.split(' ').length != 1
-              span &nbsp; #{book.authors[1].name.split(' ').slice(1).join(' ')},
-              span &nbsp; #{book.authors[1].name.split(' ').shift()[0]}.
-            else
-              span &nbsp; #{book.authors[1].name}
-          if book.authors[2]
-            span &nbsp; et al.
+          if book.authors
+            if book.authors[0]
+              if book.authors[0].name.split(' ').length !== 1
+                span &nbsp; #{book.authors[0].name.split(' ').slice(1).join(' ')},
+                span &nbsp; #{book.authors[0].name.split(' ').shift()[0]}.
+              else
+                span &nbsp; #{book.authors[0].name}
+            if book.authors[1]
+              span &nbsp; and
+              if book.authors[1].name.split(' ').length != 1
+                span &nbsp; #{book.authors[1].name.split(' ').slice(1).join(' ')},
+                span &nbsp; #{book.authors[1].name.split(' ').shift()[0]}.
+              else
+                span &nbsp; #{book.authors[1].name}
+            if book.authors[2]
+              span &nbsp; et al.
+            span ,&nbsp;
           if book.publish_date
-            span ,&nbsp; #{book.publish_date.slice(-4)}.
+            span #{book.publish_date.slice(-4)}.
           else
             span ,&nbsp; (n. d.).
           if book.title
