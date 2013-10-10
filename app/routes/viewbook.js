@@ -60,10 +60,4 @@ module.exports = function (app) {
     }
   )
 
-  app.get('/example',
-    function (req, res) {
-      console.log(req.ip + ' accessed example! *******')
-      res.render('example')
-    }
-  )
 }
