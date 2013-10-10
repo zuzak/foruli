@@ -15,18 +15,26 @@ module.exports = function (app) {
           contribs.push(contrib)
         })
         contribs.pop()
-        var license = ""
-        try {
-          license = rf('../../LICENSE', {encoding: 'utf-8'})
-        } catch (e) {
-          //
-        }
-        res.render('version', {
-          user: req.user,
-          pretty: true,
-          title: 'foruli version · version',
-          commit: commit,
-          contribs: contribs,
+        exec('git log -1', function (err, stdout, stderr) {
+          var diff = stdout
+          exec('git symbolic-ref HEAD --short', function (err, stdout, stderr) {
+            var branch = stdout
+            var license = ""
+            try {
+              license = rf('../../LICENSE', {encoding: 'utf-8'})
+            } catch (e) {
+              //
+            }
+            res.render('version', {
+              user: req.user,
+              pretty: true,
+              title: 'foruli version · version',
+              commit: commit,
+              contribs: contribs,
+              diff: diff,
+              branch: branch
+            })
+          })
         })
       })
     })
