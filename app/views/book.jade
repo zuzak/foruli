@@ -33,8 +33,8 @@ block content
     div.col-md-3
       if book.cover
         img(src=book.cover.medium).cover
-      if book.classifications
-        ul.list-group.classifications
+      ul.list-group.classifications
+        if book.classifications
           for classification in book.classifications
             li.list-group-item #{classification[0]}
       if associated
@@ -76,6 +76,34 @@ block content
               span #{book.number_of_pages} pages &nbsp;
             if book.weight
               span (#{book.weight})
+      if primo[0]
+        - var library = primo[0].libraries[0].LIBRARY[0]
+        if library.status == "available"
+          div.panel.panel-success
+            div.panel-heading
+              span This book is available for loan in the&nbsp;
+              b #{translate(library.library)}
+              span .
+              div.pull-right
+                a(href="http://primo.aber.ac.uk/primo_library/libweb/action/display.do?doc="+primo[0].recordid)
+                  i.icon-link &nbsp;
+                  span View on Primo
+            div.panel-body
+              span You can find it under #{library.collection}.
+         else if library.status == "unavailable"
+           div.panel.panel-info
+             div.panel-heading
+               span This book is held by the&nbsp;
+               b #{translate(library.library)}
+               span .
+               div.pull-right
+                 a(href="http://primo.aber.ac.uk/primo_library/libweb/action/display.do?doc="+primo[0].recordid)
+                   i.icon-link &nbsp;
+                   span View on Primo
+             div.panel-body
+               p.
+                It's on loan at the moment &mdash; but it can normally be found
+                under #{library.collection}. You can reserve it via Primo.
       if book.notes
         div.panel.panel-default.panel-body #{book.notes}
       div.panel.panel-default
