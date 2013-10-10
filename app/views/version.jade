@@ -10,8 +10,26 @@ block append styles
     .subject {
       font-variant: small-caps;
     }
+    .nostyle {
+      border-color:transparent;
+      background-color: transparent;
+      box-shadow: none;
+    }
+
 block content
-  h1 foruli
+  div.panel.nostyle
+    ul.pull-right.pagination.disabled
+      li(style="color: #" + commit.substring(0,6))
+        span 
+          i.icon-code &nbsp;  #{commit}
+      if branch == "master"
+        li(style="color: green")
+          span
+            i.icon-fork #{branch}
+      else
+        li(style="color: red")
+          span.icon-code-fork &nbsp; #{branch}
+    h1 foruli
   div.panel.panel-default
     div.panel-heading
       span.headword foruli &nbsp;
@@ -32,7 +50,14 @@ block content
         li
           span Book information courtesy of
           a(href="http://openlibrary.org")
-            span The Internet Archive.
+            span &nbsp; The Internet Archive.
+  div.panel.panel-default
+    div.panel-heading
+      span Commit information
+      div.pull-right
+        a(href="https://github.com/zuzak/foruli/commit/" + commit).icon-code &nbsp; View commit
+    div.panel-body
+      div.pre #{diff}
   div.panel.panel-default
     div.panel-heading
       span Contributors
@@ -45,7 +70,10 @@ block content
         for contrib in contribs
           li
             span #{contrib.slice(1)} &nbsp;
-            span.label.label-default #{contrib[0]} commits
+            if contrib[0] == 1
+              span.label.label-default 1 commit
+            else
+              span.label.label-default #{contrib[0]} commits
   if license
     div.panel.panel-default
       div.panel-heading
