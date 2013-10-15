@@ -33,8 +33,8 @@ block content
     div.col-md-3
       if book.cover
         img(src=book.cover.medium).cover
-      if book.classifications
-        ul.list-group.classifications
+      ul.list-group.classifications
+        if book.classifications
           for classification in book.classifications
             li.list-group-item #{classification[0]}
       if associated

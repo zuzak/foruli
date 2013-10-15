@@ -1,4 +1,4 @@
-extends navbar 
+extends navbar
 block append styles
  style.
    .container {
@@ -8,6 +8,9 @@ block append styles
    input,button {
      margin:5px;
    }
+   .pad {
+     margin-top:20px;
+   }
 block content
   h1(title="greetings, reader")
     span.latin lectori salutem
@@ -16,3 +19,8 @@ block content
     input.username.form-control(type="text",name="username",placeholder="enter your username",autofocus)
     input.password.form-control(name="password",type="password",placeholder="enter your password")
     button.btn.btn-lg.btn-primary.btn-block(type="submit") Create account or sign in
+    div.panel.panel-warning.pad
+      div.panel-heading
+        i.icon-warning-sign &nbsp;
+        span Do not use your Aber credentials.
+
