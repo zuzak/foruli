@@ -1,7 +1,9 @@
 var ensureLogin = require('connect-ensure-login').ensureLoggedIn
-var oL = 'http://openlibrary.org/api/books?format=json&jscmd=data&bibkeys=ISBN:'
 var request = require('request')
 var UserBook = require('../schemas/userbook')
+var classify2 = require('classify2').get
+
+const oL = 'http://openlibrary.org/api/books?format=json&jscmd=data&bibkeys=ISBN:'
 
 module.exports = function (app) {
 
@@ -37,18 +39,35 @@ module.exports = function (app) {
         } catch (e) {
           title = 'Book'
         }
-        UserBook.findOne({
-          username: req.user.username,
-          isbn: req.params.isbn
-        }, function (err, associated) {
-          res.render('book',{
-            book: data,
-            user: req.user,
-            pretty: true,
-            active: 'books',
-            title: title,
-            isbn: req.params.isbn,
-            associated: associated
+        classify2(req.params.isbn, function (calls) {
+          if (!data.classifications) {
+            data.classifications = []
+          }
+          if (calls.congress) {
+            if (!data.classifications.lc_classifications){
+              data.classifications.lc_classifications = []
+            }
+            data.classifications.lc_classifications.push(calls.congress)
+          }
+          if (calls.dewey) {
+            if (!data.classifications.dewey_decimal_class) {
+              data.classifications.dewey_decimal_class = []
+            }
+            data.classifications.dewey_decimal_class.push(calls.dewey)
+          }
+          UserBook.findOne({
+            username: req.user.username,
+            isbn: req.params.isbn
+          }, function (err, associated) {
+            res.render('book',{
+              book: data,
+              user: req.user,
+              pretty: true,
+              active: 'books',
+              title: title,
+              isbn: req.params.isbn,
+              associated: associated
+            })
           })
         })
       })
