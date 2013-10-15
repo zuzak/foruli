@@ -48,8 +48,7 @@ module.exports = function (app) {
             active: 'books',
             title: title,
             isbn: req.params.isbn,
-            associated: associated,
-            translate: aberprimo.translate
+            associated: associated
           })
         })
       })
