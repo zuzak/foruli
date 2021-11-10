@@ -9,7 +9,7 @@
   "author": "Douglas Gardner <douglas@chippy.ch>",
   "license": "apache2",
   "dependencies": {
-    "jade": "~0.35.0",
+    "jade": "~1.8.0",
     "express": "~3.4.0",
     "convict": "~0.4.0",
     "winston": "~0.7.2",
